@@ -5,10 +5,12 @@ import PostSchema from "../models/Post";
 import CommentSchema from "../models/Comment";
 
 class DbContext {
-  Values = mongoose.model("Value", ValueSchema);
-  Users = mongoose.model("User", UserSchema);
-  Posts = mongoose.model("Post", PostSchema);
-  Comments = mongoose.model("Comment", CommentSchema);
+  constructor() {
+    this.Values = mongoose.model("Value", ValueSchema);
+    this.Users = mongoose.model("User", UserSchema);
+    this.Posts = mongoose.model("Post", PostSchema);
+    this.Comments = mongoose.model("Comment", CommentSchema);
+  }
 }
 
 export const dbContext = new DbContext();
