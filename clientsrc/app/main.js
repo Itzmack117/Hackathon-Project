@@ -1,7 +1,7 @@
-import ValuesController from "./Controllers/ValuesController.js";
+import UserController from "./Controllers/UserController.js";
 
 class App {
-  valuesController = new ValuesController();
+  userController = new UserController();
 }
 
 window["app"] = new App();

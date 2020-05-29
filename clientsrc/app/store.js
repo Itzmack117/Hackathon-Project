@@ -1,17 +1,21 @@
 import Value from "./Models/Value.js";
+import User from "./Models/User.js";
 
 let _state = {
-  activeValue: new Value({ title: "Value" }),
-  /** @type {Value[]} */
-  values: []
+  user: new User({
+    username: "Mack",
+    password: "pass123",
+    email: "mack@email.com",
+  }),
+  posts: [],
 };
 
 /** Collection of listeners to be called based on keyed state changes
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
-  activeValue: [],
-  values: []
+  user: [],
+  posts: [],
 };
 
 //NOTE You should not need to change the code from this point down
@@ -65,7 +69,18 @@ class Store {
   commit(prop, data) {
     _validateProp(prop);
     _state[prop] = data;
-    _listeners[prop].forEach(fn => fn());
+    _listeners[prop].forEach((fn) => fn());
+  }
+
+  loadLocalStorage() {
+    let data = JSON.parse(localStorage.getItem("Humanity"));
+    if (data) {
+      let user = new User(data.user);
+      store.commit("user", user);
+    }
+  }
+  saveState() {
+    localStorage.setItem("Humanity", JSON.stringify(_state));
   }
 }
 
