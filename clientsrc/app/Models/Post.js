@@ -1,5 +1,6 @@
 export default class Post {
   constructor(data) {
+    debugger
     this.title = data.title
     this.user = data.user.name
     this.body = data.body
