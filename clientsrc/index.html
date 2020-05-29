@@ -6,44 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="darkly.css">
+    <link rel="stylesheet" href="assets/darkly.css">
     <link rel="stylesheet" href="assets/style.css">
     <title>Posts Against Humanity</title>
 </head>
 
 <body>
-    <header class="container-fluid bg-primary text-light text-center">
-        <h1>Posts Against Humanity</h1>
-        <div class="row d-flex justify-content-between">
-            <div class="col-3"><button class="btn btn-danger m-1" type="submit">Button</button>
-                <button class="btn btn-danger m-1" type="submit">Button</button>
-                <button class="btn btn-danger m-1" type="submit">Button</button>
-            </div>
-            <div class="col-3">
-                <button class="btn btn-danger" type="submit">Log in</button>
-                <button class="btn btn-danger" type="submit">Sign Up</button>
-                <button class="btn btn-danger ml-3" type="submit"><i class="fa fa-plus" aria-hidden="true"></i><i
-                        class="fa fa-pencil" aria-hidden="true"></i></button>
-            </div>
-        </div>
-
-    </header>
-    <main class="container">
+    <header class="container-fluid bg-dark text-center dropshadow">
+        <div class="container-fluid">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+                            <a class="navbar-brand" href="#">Posts Against Humanity</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">New <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Popular</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">My Posts</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <button class="btn btn-outline-danger">Log In</button>
+                        <button class="btn btn-outline-danger">Sign Up</button>
+                        <button class="btn btn-danger my-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i><i
+                            class="fa fa-pencil" aria-hidden="true"></i></button>
+                    </div>
+                    
+                </header>
+                <main class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card bg-dark dropshadow mt-1">
                     <h5 class="card-header">New User</h5>
                     <div class="card-body">
                         <form>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label text-danger">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                        value="email@example.com">
+                                    <input type="text" class="form-control" id="staticEmail" placeholder="name@email.com">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label text-danger">Password</label>
                                 <div class="col-sm-10">
                                     <input type="password" class="form-control" id="inputPassword">
                                 </div>
@@ -53,33 +64,36 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col 12 d-flex justify-content-center">
-                <div class="card text-center">
-                    <div class="card-header">
-                        Top Post!
+        <div class="row" id="posts">
+            <div class="col 12 d-flex justify-content-center my-2">
+                <div class="card text-center bg-dark dropshadow">
+                    <div class="card-header bg-dark">
+                        <h3>Top Post!</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-danger">
                         <h5 class="card-title">Special title treatment</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.
                         </p>here</a>
                     </div>
-                    <div class="card-footer text-muted">
-                        <button href="#" class="btn btn-primary">Go somewhere!</button>
+                    <div class="card-footer bg-dark">
+                        <button href="#" class="btn btn-danger">Go somewhere!</button>
                         <div> 2 days ago
                         </div>
                     </div>
                 </div>
             </div>
     </main>
-    <footer class="container-fluid bg-info text-light">
-        <div class="row text-center">
+    <footer class="container-fluid dropshadow">
+        <div class="row text-center my-2">
             <div class="col">
-                <p><small>Made with love by Codeworks</small></p>
+                <h6>Made with love by Justin, Chris, Micah, Blake, and Mack.</h6>
             </div>
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/eb2f3edba9.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
     <script src="app/main.js" type="module"></script>
