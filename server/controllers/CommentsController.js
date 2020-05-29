@@ -2,6 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import { commentsService } from "../services/CommentsService";
 export class CommentsController extends BaseController {
+  //get comments on post
   constructor() {
     super("api/comments");
     this.router
@@ -19,7 +20,6 @@ export class CommentsController extends BaseController {
       next(error);
     }
   }
-  //get comments on post
   async getById(req, res, next) {
     try {
       let id = req.params.id;

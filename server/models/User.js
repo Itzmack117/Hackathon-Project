@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    username: { type: String, required: true },
+    name: { type: String, required: true },
     password: { type: String },
   },
   { timestamps: true, toJSON: { virtuals: true } }
