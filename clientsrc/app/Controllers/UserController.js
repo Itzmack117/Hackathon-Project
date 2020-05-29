@@ -11,13 +11,25 @@ function _draw() {
 export default class UserController {
   constructor() {
     store.subscribe("user", _draw);
-    this.getUsername();
+    // this.getUsername();
+    this.createNewUserTest()
+
   }
 
   getUsername() {
     service.getUsername();
   }
+  // getAllUserNames() {
+  //   service.getAllUserNames()
+  // }
+  createNewUserTest() {
+    let userData = {
+      name: "Micah",
+      password: "pickles"
 
+    }
+    service.createNewUser(userData)
+  }
   createNewUser(event) {
     event.preventDefault();
     let formData = event.target;

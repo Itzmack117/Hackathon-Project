@@ -1,14 +1,26 @@
 import store from "../store.js";
+import service from "../Services/PostService.js";
 
 //Private
 function _draw() {
-  let user = store.State.user;
-  console.log(user);
+  let post = store.State.posts;
+  let template = ""
+  post.forEach(p => template += p.Template)
+  //NOTE ADD TEMPLATE TO DOCUMENT AND THAT SORT OF CRAP
+}
+
+function _drawApiPosts() {
+
 }
 
 //Public
-export default class UserController {
+export default class PostController {
   constructor() {
-    store.subscribe("user", _draw);
+    store.subscribe("posts", _draw);
+    this.getAllPosts()
+  }
+
+  getAllPosts() {
+    service.getAllPosts()
   }
 }
