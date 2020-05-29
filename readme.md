@@ -22,3 +22,4 @@ Services are responsible for implementing and enforcing your business rules. Be 
 ### MVC - (Models, Collections & DbContext)
 
 Models are defined as mongoose schemas and then imported into a central location called the DbContext. All access to the database should be limited to the DbContext. `Collections.js` is a file purely designed to avoid the common problem of magic strings. This means when you register your models and have dependencies or relationships between one or more models you should import from Collections so you know the naming is always the same.
+"# Hackathon-Project" 
