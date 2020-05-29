@@ -1,9 +1,22 @@
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-main {
-    flex-grow: 1;
+header {
+  background-image: url(bg3.jpg);
+}
+
+main.container-fluid {
+  flex-grow: 1;
+  background-image: url(bg1.jpg);
+}
+
+footer {
+  background-image: url(bg3.jpg);
+}
+
+.dropshadow {
+  text-shadow: 2px 2px black;
 }
