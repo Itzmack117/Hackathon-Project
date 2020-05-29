@@ -1,9 +1,10 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
+import User from "../models/User";
 
 class PostsService {
   async find(query = {}) {
-    return await dbContext.Posts.find(query);
+    return await dbContext.Posts.find(query).populate(User);
   }
   async findById(id) {
     let data = await dbContext.Posts.findById(id);
