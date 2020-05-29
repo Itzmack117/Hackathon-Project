@@ -1,7 +1,7 @@
 export default class Post {
   constructor(data) {
     this.title = data.title
-    this.user = data.user
+    this.user = data.user.name
     this.body = data.body
     this.upvotes = data.upvotes
     this.downvotes = data.downvotes
@@ -9,7 +9,8 @@ export default class Post {
   }
 
   get Template() {
-    return /*html*/` 
+    return /*html*/`
+    <div class="col-12 col-md-4 d-flex justify-content-center my-2"> 
     <div class="card text-center">
     <div class="card-header">
        ${this.title}
@@ -19,10 +20,11 @@ export default class Post {
         <p class="card-text">${this.body}
         </p>
     </div>
-    <div class="card-footer text-muted">
-        <button href="#" class="btn btn-primary">Nailed It</button>
+      <div class="card-footer">
+        <button href="#" class="btn btn-danger">Nailed It</button>
         <div> 2 days ago
         </div>
+      </div>
     </div>
 </div>
     `
