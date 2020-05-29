@@ -6,7 +6,7 @@ function _draw() {
   let post = store.State.posts;
   let template = ""
   post.forEach(p => template += p.Template)
-  console.log(template);
+  //NOTE ADD TEMPLATE TO DOCUMENT AND THAT SORT OF CRAP
 }
 
 function _drawApiPosts() {

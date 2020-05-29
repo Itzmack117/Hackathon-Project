@@ -5,6 +5,7 @@ export default class Post {
     this.body = data.body
     this.upvotes = data.upvotes
     this.downvotes = data.downvotes
+
   }
 
   get Template() {
