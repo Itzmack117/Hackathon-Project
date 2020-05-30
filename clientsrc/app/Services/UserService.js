@@ -7,36 +7,60 @@ const _userAPI = axios.create({
 });
 
 class UserService {
-  CreateTestUser(data) {
-    let newUser = new User({
-      username: data.username,
-      password: data.password,
-    });
-    if (newUser) {
-      store.commit("user", newUser);
-      return;
+  constructor() {}
+  async login(userData) {
+    let userNameTaken = await this.checkIfUsernameUsed(userData.name);
+    if (userNameTaken) {
+      let isUser = await this.validateUser(userData.name, userData.password);
+      if (isUser) {
+        _userAPI
+          .get(`?name=${userData.name}`)
+          .then((res) => {
+            let newUser = new User(res.data[0]);
+            store.commit("user", newUser);
+            console.log(store.State.user);
+          })
+          .catch((error) => console.error(error));
+      } else {
+      }
+    } else {
+      this.createNewUser(userData);
     }
-    throw new Error("bad data provided for user creat");
   }
-  async getAllUserNames() {
-    let names = await _userAPI.get();
-  }
-  constructor() {
-    // this.getUsername();
-  }
-
-  getUsername() {
-    store.loadLocalStorage();
+  createNewUser(userData) {
+    _userAPI.post("", userData).then((res) => {
+      let newUser = new User(res.data);
+      store.commit("user", newUser);
+    });
   }
 
-  createNewUser(rawData) {
-    _userAPI
-      .post("", rawData)
+  async validateUser(name, password) {
+    let data = await _userAPI
+      .get(`?name=${name}&password=${password}`)
       .then((res) => {
-        let newUser = new User(res.data);
-        store.commit("user", newUser);
+        if (res.data[0] === undefined) {
+          console.log("bad password");
+          return false;
+        } else {
+          console.log("good password");
+          return true;
+        }
       })
-      .catch((error) => console.error(error));
+      .catch((e) => console.error(e));
+    return data;
+  }
+  async checkIfUsernameUsed(name) {
+    let data = await _userAPI
+      .get(`?name=${name}`)
+      .then((res) => {
+        if (res.data[0] === undefined) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .catch((e) => console.error(e));
+    return data;
   }
 }
 

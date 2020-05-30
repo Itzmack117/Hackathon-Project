@@ -25,7 +25,6 @@ function _togglePostForm() {
 export default class PostController {
   constructor() {
     store.subscribe("posts", _draw);
-    this.getAllPosts();
   }
 
   getAllPosts() {
@@ -43,5 +42,15 @@ export default class PostController {
       body: formData.quote.value,
     };
     service.createNewPost(rawData);
+  }
+  addUpVote(postId) {
+    let postData = store.State.posts.find((p) => p.id == postId);
+    postData.upvotes++;
+    service.vote(postId, postData);
+  }
+  addDownVote(postId) {
+    let postData = store.State.posts.find((p) => p.id == postId);
+    postData.downvotes++;
+    service.vote(postId, postData);
   }
 }

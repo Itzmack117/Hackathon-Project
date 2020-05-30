@@ -26,6 +26,26 @@ class PostsService {
     }
     return data;
   }
+  async editDownVote(id, update) {
+    let data = await dbContext.Posts.findByIdAndUpdate(id, update, {
+      new: true,
+      runValidators: true,
+    });
+    if (!data) {
+      throw new BadRequest("Invalid Id");
+    }
+    return data;
+  }
+  async editUpVote(id, update) {
+    let data = await dbContext.Posts.findByIdAndUpdate(id, update, {
+      new: true,
+      runValidators: true,
+    });
+    if (!data) {
+      throw new BadRequest("Invalid Id");
+    }
+    return data;
+  }
 
   async delete(id) {
     let data = await dbContext.Posts.findByIdAndDelete(id);

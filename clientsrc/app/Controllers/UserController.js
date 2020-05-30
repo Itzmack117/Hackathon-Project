@@ -1,11 +1,14 @@
 import store from "../store.js";
 import userService from "../Services/UserService.js";
-import postController from "./PostController.js";
+import postService from "../Services/postService.js";
 
 //Private
 function _draw() {
   let user = store.State.user;
-  console.log(user);
+  if (user) {
+    _toggleLoginForm();
+    _toggleFeed();
+  }
 }
 let isOpen = true;
 function _toggleLoginForm() {
@@ -27,19 +30,16 @@ function _toggleFeed() {
 export default class UserController {
   constructor() {
     store.subscribe("user", _draw);
-    // this.getUsername();
-    // userService.CreateTestUser();
   }
-  login(event) {
+  async login(event) {
     event.preventDefault();
     let formData = event.target;
     let rawData = {
       name: formData.username.value,
       password: formData.password.value,
     };
-    userService.createNewUser(rawData);
-    _toggleLoginForm();
-    _toggleFeed();
+    await userService.login(rawData);
+    postService.getAllPosts();
   }
 
   // getUsername() {
