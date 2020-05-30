@@ -6,6 +6,7 @@ export class UsersController extends BaseController {
     super("api/users");
     this.router
       .get("", this.getAll)
+      .get("/?name", this.getAll)
       .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.edit)
@@ -13,7 +14,7 @@ export class UsersController extends BaseController {
   }
   async getAll(req, res, next) {
     try {
-      let data = await usersService.find();
+      let data = await usersService.find(req.query);
       return res.send(data);
     } catch (error) {
       next(error);

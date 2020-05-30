@@ -25,7 +25,6 @@ function _togglePostForm() {
 export default class PostController {
   constructor() {
     store.subscribe("posts", _draw);
-    this.getAllPosts();
   }
 
   getAllPosts() {

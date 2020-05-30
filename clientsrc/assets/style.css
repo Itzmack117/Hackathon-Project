@@ -27,3 +27,8 @@ footer {
 .post-card {
   min-width: 100%;
 }
+.profile-image {
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+}

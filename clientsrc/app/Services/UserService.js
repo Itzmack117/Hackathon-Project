@@ -21,22 +21,56 @@ class UserService {
   async getAllUserNames() {
     let names = await _userAPI.get();
   }
-  constructor() {
-    // this.getUsername();
-  }
+  constructor() {}
 
   getUsername() {
     store.loadLocalStorage();
   }
 
-  createNewUser(rawData) {
-    _userAPI
-      .post("", rawData)
+  async createNewUser(rawData) {
+    let userNameTaken = await this.checkIfUsernameUsed(rawData.name);
+    if (userNameTaken) {
+      let isUser = await this.validateUser(rawData.name, rawData.password);
+      if (isUser) {
+        _userAPI
+          .get(`?name=${rawData.name}`)
+          .then((res) => {
+            let newUser = new User(res.data[0]);
+            store.commit("user", newUser);
+            console.log(store.State.user);
+          })
+          .catch((error) => console.error(error));
+      } else {
+      }
+    }
+  }
+  async validateUser(name, password) {
+    let data = await _userAPI
+      .get(`?name=${name}&password=${password}`)
       .then((res) => {
-        let newUser = new User(res.data);
-        store.commit("user", newUser);
+        if (res.data[0] === undefined) {
+          console.log("bad password");
+          return false;
+        } else {
+          console.log("good password");
+          return true;
+        }
       })
-      .catch((error) => console.error(error));
+      .catch((e) => console.error(e));
+    return data;
+  }
+  async checkIfUsernameUsed(name) {
+    let data = await _userAPI
+      .get(`?name=${name}`)
+      .then((res) => {
+        if (res.data[0] === undefined) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .catch((e) => console.error(e));
+    return data;
   }
 }
 
