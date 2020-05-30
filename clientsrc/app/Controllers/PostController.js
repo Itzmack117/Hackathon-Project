@@ -43,4 +43,14 @@ export default class PostController {
     };
     service.createNewPost(rawData);
   }
+  addUpVote(postId) {
+    let postData = store.State.posts.find((p) => p.id == postId);
+    postData.upvotes++;
+    service.vote(postId, postData);
+  }
+  addDownVote(postId) {
+    let postData = store.State.posts.find((p) => p.id == postId);
+    postData.downvotes++;
+    service.vote(postId, postData);
+  }
 }

@@ -7,6 +7,12 @@ const _postApi = axios.create({
 });
 
 class PostService {
+  vote(id, rawData) {
+    _postApi.put(`${id}`, rawData).then((res) => {
+      console.log(res.data);
+      this.getAllPosts();
+    });
+  }
   createNewPost(rawData) {
     rawData.user = store.State.user.id;
     _postApi.post("", rawData).then((res) => {

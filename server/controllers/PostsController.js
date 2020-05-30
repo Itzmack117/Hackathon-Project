@@ -12,8 +12,6 @@ export class PostsController extends BaseController {
       .delete("/:id", this.delete);
   }
 
-  //get post by
-  //get post by tags
   async getAll(req, res, next) {
     try {
       let data = await postsService.find();
