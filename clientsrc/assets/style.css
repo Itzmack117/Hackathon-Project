@@ -1,14 +1,14 @@
 body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 header {
   background-image: url(bg3.jpg);
 }
 
-main.container-fluid {
+main {
   flex-grow: 1;
   background-image: url(bg1.jpg);
 }
@@ -19,4 +19,11 @@ footer {
 
 .dropshadow {
   text-shadow: 2px 2px black;
+}
+.hidden {
+  display: none;
+}
+
+.post-card {
+  min-width: 100%;
 }

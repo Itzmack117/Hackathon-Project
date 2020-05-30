@@ -4,37 +4,44 @@ import service from "../Services/PostService.js";
 //Private
 function _draw() {
   let post = store.State.posts;
-  let template = ""
-  post.forEach(p => template += p.Template)
-  document.getElementById("posts").innerHTML = template
+  let template = "";
+  post.forEach((p) => (template += p.Template));
+  document.getElementById("posts").innerHTML = template;
 }
 
-function _drawApiPosts() {
+function _drawApiPosts() {}
 
+let isOpen = false;
+function _togglePostForm() {
+  if (isOpen) {
+    document.getElementById("post-form").classList.add("hidden");
+    isOpen = false;
+    return;
+  }
+  isOpen = true;
+  document.getElementById("post-form").classList.remove("hidden");
 }
-
 //Public
 export default class PostController {
   constructor() {
     store.subscribe("posts", _draw);
-    this.getAllPosts()
-
+    this.getAllPosts();
   }
 
   getAllPosts() {
-    service.getAllPosts()
+    service.getAllPosts();
+  }
+
+  togglePostForm() {
+    _togglePostForm();
   }
   createNewPost(event) {
-
-    event.preventDefault()
-    let formData = event.target
+    event.preventDefault();
+    let formData = event.target;
     let rawData = {
-      user: formData.user.value,
       title: formData.title.value,
-      body: formData.body.value,
-    }
-
-    service.createNewPost(rawData)
-    // formData.reset()
+      body: formData.quote.value,
+    };
+    service.createNewPost(rawData);
   }
 }

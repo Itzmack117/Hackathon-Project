@@ -1,14 +1,25 @@
 import store from "../store.js";
+import User from "../Models/User.js";
 
+// @ts-ignore
 const _userAPI = axios.create({
   baseURL: "http://localhost:3000/api/users/",
 });
 
 class UserService {
+  CreateTestUser(data) {
+    let newUser = new User({
+      username: data.username,
+      password: data.password,
+    });
+    if (newUser) {
+      store.commit("user", newUser);
+      return;
+    }
+    throw new Error("bad data provided for user creat");
+  }
   async getAllUserNames() {
-    let names = await _userAPI.get()
-    console.log(names);
-
+    let names = await _userAPI.get();
   }
   constructor() {
     // this.getUsername();
@@ -18,13 +29,14 @@ class UserService {
     store.loadLocalStorage();
   }
 
-  async createNewUser(rawUserData) {
-    let res = await _userAPI.post("", rawUserData);
-    // this.getUsername();
-    // store.saveState();
-    console.log(res);
-    this.getAllUserNames()
-
+  createNewUser(rawData) {
+    _userAPI
+      .post("", rawData)
+      .then((res) => {
+        let newUser = new User(res.data);
+        store.commit("user", newUser);
+      })
+      .catch((error) => console.error(error));
   }
 }
 

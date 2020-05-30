@@ -1,12 +1,11 @@
 import Value from "./Models/Value.js";
 import User from "./Models/User.js";
+import Post from "./Models/Post.js";
 
 let _state = {
-  user: new User({
-    username: "Mack",
-    password: "pass123",
-    email: "mack@email.com",
-  }),
+  /**@type {User} */
+  user: null,
+  /**@type {Post []} */
   posts: [],
 };
 

@@ -1,10 +1,26 @@
 import store from "../store.js";
-import service from "../Services/UserService.js";
+import userService from "../Services/UserService.js";
+import postController from "./PostController.js";
 
 //Private
 function _draw() {
   let user = store.State.user;
   console.log(user);
+}
+let isOpen = true;
+function _toggleLoginForm() {
+  if (isOpen) {
+    document.getElementById("login-form").classList.add("hidden");
+    console.log("hiding");
+
+    isOpen = false;
+    return;
+  }
+  isOpen = true;
+  document.getElementById("login-form").classList.remove("hidden");
+}
+function _toggleFeed() {
+  document.getElementById("posts").classList.remove("hidden");
 }
 
 //Public
@@ -12,33 +28,47 @@ export default class UserController {
   constructor() {
     store.subscribe("user", _draw);
     // this.getUsername();
-    this.createNewUserTest()
-
+    // userService.CreateTestUser();
   }
-
-  getUsername() {
-    service.getUsername();
-  }
-  // getAllUserNames() {
-  //   service.getAllUserNames()
-  // }
-  createNewUserTest() {
-    let userData = {
-      name: "Micah",
-      password: "pickles"
-
-    }
-    service.createNewUser(userData)
-  }
-  createNewUser(event) {
+  login(event) {
     event.preventDefault();
     let formData = event.target;
-    let rawUserData = {
-      username: formData.username.value,
+    let rawData = {
+      name: formData.username.value,
       password: formData.password.value,
-      email: formData.email.value,
     };
-    service.createNewUser(rawUserData);
-    formData.reset;
+    userService.createNewUser(rawData);
+    _toggleLoginForm();
+    _toggleFeed();
   }
+
+  // getUsername() {
+  //   userService.getUsername();
+  // }
+  // getAllUserNames() {
+  //   userService.getAllUserNames()
+  // }
+  // createNewUserTest() {
+  //   let userData = {
+  //     name: "Micah",
+  //     password: "pickles",
+  //   };
+  //   try {
+  //     userService.createNewUser(userData);
+  //     _toggleLoginForm();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // createNewUser(event) {
+  //   event.preventDefault();
+  //   let formData = event.target;
+  //   let rawUserData = {
+  //     username: formData.username.value,
+  //     password: formData.password.value,
+  //     email: formData.email.value,
+  //   };
+  //   userService.createNewUser(rawUserData);
+  //   formData.reset;
+  // }
 }
