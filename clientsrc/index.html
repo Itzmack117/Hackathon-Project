@@ -13,10 +13,9 @@
 </head>
 
 <body>
-    <header class="container-fluid sticky-top bg-warning text-center dropshadow">
+    <header class="container-fluid sticky-top  text-center dropshadow">
         <div class="row ">
             <div class="col-12">
-
             <nav class="navbar navbar-expand-lg d-flex justify-content-between">
                     <div>
                         <h5>Quotes Against Humanity</h5>
@@ -52,6 +51,33 @@
         </div>
     </div>
         </div>
+
+
+
+        <div class="row hidden " id="post-form">
+            <div class="col-12">
+                <div class="card bg-dark dropshadow mt-1 ">
+                    <h5 class="card-header">Create new Quote</h5>
+                    <div class="card-body">
+                        <form onsubmit="app.postController.createNewPost(event)">
+                            <div class=" mt-1 p-1">
+
+                                <input type="text" class="quote-form w-100" name="title" placeholder="Title...">
+                            </div>
+                            <div class=" mt-1 p-1">
+
+                                <input type="text" class="quote-form w-100" name="quote" placeholder="Quote...">
+                            </div>
+                            <div class=" mt-1 p-1">
+
+                                <button type="submit" name="" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </header>
 
     <main class="container-fluid">
@@ -75,31 +101,7 @@
             </div>
         </div>
        
-        <div class="row hidden" id="post-form">
-            <div class="col-12">
-                <div class="card bg-dark dropshadow mt-1">
-                    <h5 class="card-header">Create new Quote</h5>
-                    <div class="card-body">
-                        <form onsubmit="app.postController.createNewPost(event)">
-                            <div class=" mt-1 p-1">
-
-                                <input type="text" class="quote-form w-100" name="title" placeholder="Title...">
-                            </div>
-                            <div class=" mt-1 p-1">
-
-                                <input type="text" class="quote-form w-100" name="quote" placeholder="Quote...">
-                            </div>
-                            <div class=" mt-1 p-1">
-
-                                <button type="submit" name="" class="btn btn-primary">Submit</button>
-                            </div>
-                        
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="row" id="posts">
 
         </div>

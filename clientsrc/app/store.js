@@ -72,14 +72,16 @@ class Store {
   }
 
   loadLocalStorage() {
-    let data = JSON.parse(localStorage.getItem("Humanity"));
+    let data = JSON.parse(localStorage.getItem("user"));
     if (data) {
       let user = new User(data.user);
       store.commit("user", user);
+      return;
     }
+    console.log("no user data");
   }
-  saveState() {
-    localStorage.setItem("Humanity", JSON.stringify(_state));
+  saveLocalStorage() {
+    localStorage.setItem("user", JSON.stringify(_state.user));
   }
 }
 
