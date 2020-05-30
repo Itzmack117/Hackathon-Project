@@ -7,33 +7,14 @@ const _userAPI = axios.create({
 });
 
 class UserService {
-  CreateTestUser(data) {
-    let newUser = new User({
-      username: data.username,
-      password: data.password,
-    });
-    if (newUser) {
-      store.commit("user", newUser);
-      return;
-    }
-    throw new Error("bad data provided for user creat");
-  }
-  async getAllUserNames() {
-    let names = await _userAPI.get();
-  }
   constructor() {}
-
-  getUsername() {
-    store.loadLocalStorage();
-  }
-
-  async createNewUser(rawData) {
-    let userNameTaken = await this.checkIfUsernameUsed(rawData.name);
+  async login(userData) {
+    let userNameTaken = await this.checkIfUsernameUsed(userData.name);
     if (userNameTaken) {
-      let isUser = await this.validateUser(rawData.name, rawData.password);
+      let isUser = await this.validateUser(userData.name, userData.password);
       if (isUser) {
         _userAPI
-          .get(`?name=${rawData.name}`)
+          .get(`?name=${userData.name}`)
           .then((res) => {
             let newUser = new User(res.data[0]);
             store.commit("user", newUser);
@@ -42,8 +23,17 @@ class UserService {
           .catch((error) => console.error(error));
       } else {
       }
+    } else {
+      this.createNewUser(userData);
     }
   }
+  createNewUser(userData) {
+    _userAPI.post("", userData).then((res) => {
+      let newUser = new User(res.data);
+      store.commit("user", newUser);
+    });
+  }
+
   async validateUser(name, password) {
     let data = await _userAPI
       .get(`?name=${name}&password=${password}`)

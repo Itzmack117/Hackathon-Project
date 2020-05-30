@@ -38,7 +38,7 @@ export default class UserController {
       name: formData.username.value,
       password: formData.password.value,
     };
-    await userService.createNewUser(rawData);
+    await userService.login(rawData);
     postService.getAllPosts();
   }
 
