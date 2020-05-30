@@ -5,6 +5,8 @@ export class PostsController extends BaseController {
   constructor() {
     super("api/posts");
     this.router
+      .get("/newposts", this.getNewPosts)
+      .get("/popularposts", this.getPopularPosts)
       .get("", this.getAll)
       .get("/:id", this.getById)
       .post("", this.create)
@@ -29,6 +31,25 @@ export class PostsController extends BaseController {
       next(error);
     }
   }
+
+  async getNewPosts(req, res, next) {
+    try {
+      let newPosts = await postsService.getNewposts();
+      return res.send(newPosts);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getPopularPosts(req, res, next) {
+    try {
+      let popularPosts = await postsService.getPopularPosts();
+      return res.send(popularPosts);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async create(req, res, next) {
     try {
       let data = await postsService.create(req.body);

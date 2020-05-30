@@ -4,7 +4,7 @@ import User from "../models/User";
 
 class PostsService {
   async find(query = {}) {
-    return await dbContext.Posts.find(query).populate("Users");
+    return await dbContext.Posts.find(query);
   }
   async findById(id) {
     let data = await dbContext.Posts.findById(id);
@@ -53,6 +53,14 @@ class PostsService {
       throw new BadRequest("Invalid Id");
     }
     return "delorted the user";
+  }
+
+  async getNewposts(query = {}) {
+    return await dbContext.Posts.find(query).sort("-createdAt");
+  }
+
+  async getPopularPosts(query = {}) {
+    return await dbContext.Posts.find(query).sort("-upvotes");
   }
 }
 
