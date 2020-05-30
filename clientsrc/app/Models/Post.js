@@ -16,7 +16,7 @@ export default class Post {
     <div class="card post-card text-center">
     <div class="card-header  text-left d-flex align-items-end">
     <img src="https://place-hold.it/50?text=Img&fontsize=16"class="profile-image img-fluid">
-    <h5 class="d-inline m-1 ml-2 text-primary">Users name <h5>
+    <h5 class="d-inline m-1 ml-2 text-primary">${this.user} <h5>
     </div>
 
     <div class="card-body">

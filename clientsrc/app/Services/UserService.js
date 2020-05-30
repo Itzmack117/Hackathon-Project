@@ -9,8 +9,8 @@ const _userAPI = axios.create({
 class UserService {
   constructor() {}
   async login(userData) {
-    let userNameTaken = await this.checkIfUsernameUsed(userData.name);
-    if (userNameTaken) {
+    let isUserNameTaken = await this.checkIfUsernameUsed(userData.name);
+    if (isUserNameTaken) {
       let isUser = await this.validateUser(userData.name, userData.password);
       if (isUser) {
         _userAPI
@@ -18,7 +18,8 @@ class UserService {
           .then((res) => {
             let newUser = new User(res.data[0]);
             store.commit("user", newUser);
-            console.log(store.State.user);
+
+            store.saveLocalStorage();
           })
           .catch((error) => console.error(error));
       } else {
@@ -31,6 +32,7 @@ class UserService {
     _userAPI.post("", userData).then((res) => {
       let newUser = new User(res.data);
       store.commit("user", newUser);
+      store.saveLocalStorage();
     });
   }
 
@@ -39,10 +41,8 @@ class UserService {
       .get(`?name=${name}&password=${password}`)
       .then((res) => {
         if (res.data[0] === undefined) {
-          console.log("bad password");
           return false;
         } else {
-          console.log("good password");
           return true;
         }
       })
