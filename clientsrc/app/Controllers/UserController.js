@@ -7,6 +7,7 @@ function _draw() {
   let user = store.State.user;
   if (user) {
     _toggleLoginForm();
+    postService.getAllPosts();
     _toggleFeed();
   }
 }
@@ -30,6 +31,7 @@ function _toggleFeed() {
 export default class UserController {
   constructor() {
     store.subscribe("user", _draw);
+    store.loadLocalStorage()
   }
   async login(event) {
     event.preventDefault();

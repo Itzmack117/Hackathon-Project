@@ -1,6 +1,6 @@
 export default class User {
   constructor(data) {
-    this.id = data._id;
+    this.id = data.id || data._id;
     this.name = data.name;
     this.password = data.password;
     // this.email = data.email;
