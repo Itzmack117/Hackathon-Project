@@ -12,6 +12,9 @@ class CommentsService {
     }
     return data;
   }
+  async findUserById(query = {}) {
+    return await dbContext.Comments.find(query).populate("User")
+  }
   async create(rawData) {
     return await dbContext.Comments.create(rawData);
   }
