@@ -1,6 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { usersService } from "../services/UsersService";
+import { postsService } from "../services/PostsService";
 export class UsersController extends BaseController {
   constructor() {
     super("api/users");

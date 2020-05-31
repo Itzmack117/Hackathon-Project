@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import UserSchema from "../models/User";
 import PostSchema from "../models/Post";
 import CommentSchema from "../models/Comment";
-import InspireSchema from "../models/Inspire"
+import InspireSchema from "../models/Inspire";
 
 class DbContext {
   constructor() {
