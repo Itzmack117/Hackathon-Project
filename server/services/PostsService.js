@@ -4,7 +4,10 @@ import User from "../models/User";
 
 class PostsService {
   async find(query = {}) {
-    return await dbContext.Posts.find(query);
+    return await dbContext.Posts.find(query).populate({
+      path: "user",
+      model: "User",
+    });
   }
   async findById(id) {
     let data = await dbContext.Posts.findById(id);
