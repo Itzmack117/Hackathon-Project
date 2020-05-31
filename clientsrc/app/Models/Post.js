@@ -1,5 +1,5 @@
 import store from "../store.js";
-async function getUsername() { }
+async function getUsername() {}
 export default class Post {
   constructor(data) {
     this.id = data.id;
@@ -8,6 +8,13 @@ export default class Post {
     this.body = data.body;
     this.upvotes = data.upvotes;
     this.downvotes = data.downvotes;
+
+    let createdAtDateObject = new Date(data.createdAt);
+    let createdAtStringArray = createdAtDateObject.toUTCString().split(" ");
+    this.dayOfMonth = createdAtStringArray[1];
+    this.month = createdAtStringArray[2];
+    this.year = createdAtStringArray[3];
+    this.time = createdAtStringArray[4].slice(0, 5);
   }
 
   get Template() {
@@ -42,6 +49,6 @@ export default class Post {
     `;
   }
   get isDel() {
-    return /*html*/`<button class="btn btn-danger" onclick="app.postController.deletePost('${this.id}')"><i class="fa fa-trash"></i></button>`
+    return /*html*/ `<button class="btn btn-danger" onclick="app.postController.deletePost('${this.id}')"><i class="fa fa-trash"></i></button>`;
   }
 }

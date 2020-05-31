@@ -6,10 +6,11 @@ function _draw() {
   let post = store.State.posts;
   let template = "";
   post.forEach((p) => (template += p.Template));
+  console.log(post);
   document.getElementById("posts").innerHTML = template;
 }
 
-function _drawApiPosts() { }
+function _drawApiPosts() {}
 
 let isOpen = false;
 function _togglePostForm() {
@@ -55,5 +56,19 @@ export default class PostController {
     let postData = store.State.posts.find((p) => p.id == postId);
     postData.downvotes++;
     service.vote(postId, postData);
+  }
+  getNewPosts() {
+    try {
+      service.getNewPosts();
+    } catch (error) {
+      console.log("Error in PostController.getNewPosts: ", error);
+    }
+  }
+  getPopularPosts() {
+    try {
+      service.getPopularPosts();
+    } catch (error) {
+      console.log("Error in PostController.getPopularPosts: ", error);
+    }
   }
 }

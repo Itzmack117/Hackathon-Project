@@ -34,13 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <button class="btn btn-outline-light  m-1 p-1" href="#">New <span class="sr-only">(current)</span></button>
+                            <button class="btn btn-outline-light  m-1 p-1" onclick="app.postController.getNewPosts()">New <span class="sr-only">(current)</span></button>
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-outline-light  m-1 p-1" href="#">Popular</button>
+                            <button class="btn btn-outline-light  m-1 p-1" onclick="app.postController.getPopularPosts()">Popular</button>
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-outline-light  m-1 p-1" href="#">My Posts</button>
+                            <button class="btn btn-outline-light  m-1 p-1" >My Posts</button>
                         </li>
                     </ul>
                 </div>
