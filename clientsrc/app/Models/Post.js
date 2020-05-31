@@ -1,5 +1,5 @@
 import store from "../store.js";
-async function getUsername() {}
+async function getUsername() { }
 export default class Post {
   constructor(data) {
     this.id = data.id;
@@ -16,7 +16,7 @@ export default class Post {
     <div class="card post-card text-center">
     <div class="card-header  text-left d-flex align-items-end">
     <img src="https://place-hold.it/50?text=Img&fontsize=16"class="profile-image img-fluid">
-    <h5 class="d-inline m-1 ml-2 text-primary">${this.user} <h5>
+    <h5 class="d-inline m-1 ml-2 text-primary">${this.user}<h5><p cl="d-inline float-right">${this.isDel}</p>
     </div>
 
     <div class="card-body">
@@ -40,5 +40,8 @@ export default class Post {
     </div>
 </div>
     `;
+  }
+  get isDel() {
+    return /*html*/`<button class="btn btn-danger" onclick="app.postController.deletePost('${this.id}')"><i class="fa fa-trash"></i></button>`
   }
 }

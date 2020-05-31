@@ -21,13 +21,16 @@ class PostService {
   }
   async getAllPosts() {
     let data = await _postApi.get();
-    let testDate = new Date(data.data[0].createdAt);
-    console.log(data.data[0]);
-
-    console.log(testDate.getHours());
+    // let testDate = new Date(data.data[0].createdAt);
+    // console.log(data.data[0]);
+    // console.log(testDate.getHours());
 
     let newPosts = data.data.map((p) => new Post(p));
     store.commit("posts", newPosts);
+  }
+  deletePost(id) {
+    _postApi.delete(`${id}`)
+    this.getAllPosts()
   }
 }
 

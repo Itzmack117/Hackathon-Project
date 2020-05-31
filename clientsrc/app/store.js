@@ -74,7 +74,7 @@ class Store {
   loadLocalStorage() {
     let data = JSON.parse(localStorage.getItem("user"));
     if (data) {
-      let user = new User(data.user);
+      let user = new User(data);
       store.commit("user", user);
       return;
     }

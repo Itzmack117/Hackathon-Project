@@ -9,7 +9,7 @@ function _draw() {
   document.getElementById("posts").innerHTML = template;
 }
 
-function _drawApiPosts() {}
+function _drawApiPosts() { }
 
 let isOpen = false;
 function _togglePostForm() {
@@ -42,6 +42,9 @@ export default class PostController {
       body: formData.quote.value,
     };
     service.createNewPost(rawData);
+  }
+  deletePost(id) {
+    service.deletePost(id);
   }
   addUpVote(postId) {
     let postData = store.State.posts.find((p) => p.id == postId);
