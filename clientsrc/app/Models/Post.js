@@ -4,7 +4,7 @@ export default class Post {
   constructor(data) {
     this.id = data.id;
     this.title = data.title;
-    this.user = data.user;
+    this.user = data.user.name;
     this.body = data.body;
     this.upvotes = data.upvotes;
     this.downvotes = data.downvotes;

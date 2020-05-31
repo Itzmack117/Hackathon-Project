@@ -6,7 +6,6 @@ function _draw() {
   let post = store.State.posts;
   let template = "";
   post.forEach((p) => (template += p.Template));
-  console.log(post);
   document.getElementById("posts").innerHTML = template;
 }
 
@@ -30,6 +29,10 @@ export default class PostController {
 
   getAllPosts() {
     service.getAllPosts();
+  }
+
+  getUserPosts() {
+    service.getUserPosts();
   }
 
   togglePostForm() {
