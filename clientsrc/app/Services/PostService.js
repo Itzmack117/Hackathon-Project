@@ -43,6 +43,12 @@ class PostService {
     let popularPosts = apiData.data.map((p) => new Post(p));
     store.commit("posts", popularPosts);
   }
+
+  async getUserPosts() {
+    let apiData = await _postApi.get(`/?user=${store.State.user.id}`);
+    let userPosts = apiData.data.map((p) => new Post(p));
+    store.commit("posts", userPosts);
+  }
 }
 
 const service = new PostService();
