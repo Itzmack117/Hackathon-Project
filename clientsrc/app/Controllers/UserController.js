@@ -31,7 +31,7 @@ function _toggleFeed() {
 export default class UserController {
   constructor() {
     store.subscribe("user", _draw);
-    store.loadLocalStorage()
+    store.loadLocalStorage();
   }
   async login(event) {
     event.preventDefault();

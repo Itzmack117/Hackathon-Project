@@ -7,8 +7,8 @@ const _postApi = axios.create({
 });
 
 class PostService {
-  vote(id, rawData) {
-    _postApi.put(`${id}`, rawData).then((res) => {
+  async vote(id, rawData) {
+    _postApi.put(id, rawData).then((res) => {
       console.log(res.data);
       this.getAllPosts();
     });
