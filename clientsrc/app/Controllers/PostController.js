@@ -74,7 +74,4 @@ export default class PostController {
       console.log("Error in PostController.getPopularPosts: ", error);
     }
   }
-  addComment() {
-    console.log("comment");
-  }
 }

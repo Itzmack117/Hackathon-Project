@@ -3,11 +3,11 @@ import User from "../Models/User.js";
 
 // @ts-ignore
 const _userAPI = axios.create({
-  baseURL: "http://localhost:3000/api/users/",
+  baseURL: "http://localhost:3000/api/users",
 });
 
 class UserService {
-  constructor() {}
+  // constructor() {}
   async login(userData) {
     let isUserNameTaken = await this.checkIfUsernameUsed(userData.name);
     if (isUserNameTaken) {

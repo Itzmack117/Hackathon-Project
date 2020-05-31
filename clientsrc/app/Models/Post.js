@@ -57,19 +57,24 @@ export default class Post {
       </div>
       </div>
         <div class="p-2 m-2 border-rounded">
-          <form onsubmit="app.postController.addComment(postId)">
-          <div class="d-flex align-items-center  ">  
-          <input class="flex-grow-1 p-2 ml-2 mr-2" placeholder="What do you thing..." type="text">
-          <div class="d-inline commentBtn m-1 p-1 action bg-primary">
-            <i type="submit" onclick="app.postController.addComment('${
-              this.id
-            }')"  class="far fa-comment align-self-center text-center"></i>
+          <form id="commentform" onsubmit="app.commentController.addComment(event, '${
+            this.id
+          }')">
+            <div class="d-flex align-items-center  ">  
+              <input class="flex-grow-1 p-2 ml-2 mr-2" placeholder="What do you thing..." type="text" name="comment">
+                <div class="d-inline" >
+                  <button type="submit" class="commentBtn m-1 p-1 action bg-primary"><i  class="far fa-comment align-self-center text-center"></i></button>
+                </div>
             </div>
-            </div>
-            </form>
+          </form>
         </div>
-      <div class="bg-light comment-card m-2 p-2">
-      ${this.commentTemplate}
+      <div  class="bg-light comment-card m-2 p-2 position-relative">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comments-${
+            this.id
+          }">Comments</button>
+      <div class="collapse position-absolute bg-light m-2 p-2 comment-card " id="comments-${
+        this.id
+      }"></div>
       </div>
       </div>
 </div>

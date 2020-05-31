@@ -36,6 +36,7 @@ footer {
 .comment-card {
   border-radius: 6px;
   border: inset black 3px;
+  z-index: 2;
 }
 
 .action {
