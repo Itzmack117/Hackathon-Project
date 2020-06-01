@@ -1,8 +1,17 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
-import User from "../models/User";
+import Post from "../models/Post";
+import { model } from "mongoose";
 
 class PostsService {
+  async editComments(postId, commentData) {
+    commentData.postId = postId;
+    let comment = await dbContext.Comments.create(commentData);
+    let post = await dbContext.Posts.findById(postId);
+    // @ts-ignore
+    post.comments.push(comment);
+    return await dbContext.Posts.findByIdAndUpdate(postId, post, { new: true });
+  }
   async find(query = {}) {
     return await dbContext.Posts.find(query).populate({
       path: "user",
@@ -19,30 +28,13 @@ class PostsService {
   async create(rawData) {
     return await dbContext.Posts.create(rawData);
   }
-  async edit(id, update) {
-    let data = await dbContext.Posts.findByIdAndUpdate(id, update, {
+  async edit(id, rawData) {
+    let votes = {
+      upvotes: rawData.upvotes,
+      downvotes: rawData.downvotes,
+    };
+    let data = await dbContext.Posts.findByIdAndUpdate(id, votes, {
       new: true,
-      runValidators: true,
-    });
-    if (!data) {
-      throw new BadRequest("Invalid Id");
-    }
-    return data;
-  }
-  async editDownVote(id, update) {
-    let data = await dbContext.Posts.findByIdAndUpdate(id, update, {
-      new: true,
-      runValidators: true,
-    });
-    if (!data) {
-      throw new BadRequest("Invalid Id");
-    }
-    return data;
-  }
-  async editUpVote(id, update) {
-    let data = await dbContext.Posts.findByIdAndUpdate(id, update, {
-      new: true,
-      runValidators: true,
     });
     if (!data) {
       throw new BadRequest("Invalid Id");
@@ -59,11 +51,16 @@ class PostsService {
   }
 
   async getNewposts(query = {}) {
-    return await dbContext.Posts.find(query).sort("-createdAt");
+    return await dbContext.Posts.find(query).sort("-createdAt").populate({
+      path: "user",
+      model: "User",
+    });
   }
 
   async getPopularPosts(query = {}) {
-    return await dbContext.Posts.find(query).sort("-upvotes");
+    return await dbContext.Posts.find(query)
+      .sort("-upvotes")
+      .populate({ path: "user", model: "User" });
   }
 }
 

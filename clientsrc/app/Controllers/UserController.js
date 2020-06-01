@@ -15,7 +15,6 @@ let isOpen = true;
 function _toggleLoginForm() {
   if (isOpen) {
     document.getElementById("login-form").classList.add("hidden");
-    console.log("hiding");
 
     isOpen = false;
     return;
@@ -43,34 +42,4 @@ export default class UserController {
     await userService.login(rawData);
     postService.getAllPosts();
   }
-
-  // getUsername() {
-  //   userService.getUsername();
-  // }
-  // getAllUserNames() {
-  //   userService.getAllUserNames()
-  // }
-  // createNewUserTest() {
-  //   let userData = {
-  //     name: "Micah",
-  //     password: "pickles",
-  //   };
-  //   try {
-  //     userService.createNewUser(userData);
-  //     _toggleLoginForm();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // createNewUser(event) {
-  //   event.preventDefault();
-  //   let formData = event.target;
-  //   let rawUserData = {
-  //     username: formData.username.value,
-  //     password: formData.password.value,
-  //     email: formData.email.value,
-  //   };
-  //   userService.createNewUser(rawUserData);
-  //   formData.reset;
-  // }
 }
