@@ -10,7 +10,7 @@ class DbContext {
     this.Values = mongoose.model("Value", ValueSchema);
     this.Users = mongoose.model("User", UserSchema);
     this.Posts = mongoose.model("Post", PostSchema);
-    this.Comments = mongoose.model("Comment", CommentSchema);
+    this.Comments = mongoose.model("Comments", CommentSchema);
     this.Inspires = mongoose.model("Inspire", InspireSchema);
   }
 }

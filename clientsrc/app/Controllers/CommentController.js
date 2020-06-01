@@ -26,24 +26,21 @@ function _draw() {
 //Public
 export default class CommentController {
   constructor() {
-    store.subscribe("comments", _draw);
-    this.getComments();
+    // store.subscribe("comments", _draw);
   }
 
-  getComments() {
-    service.getComments();
-  }
-
-  addComment(event, id) {
+  addComment(event, postId) {
     event.preventDefault();
-    console.log("add comment");
+    console.log("add comment to post: " + postId);
     let formData = event.target;
     let rawCommentData = {
-      post: id,
+      userId: store.State.user.id,
+      postId: postId,
       body: formData.comment.value,
     };
+    console.log("By user : " + rawCommentData.userId);
     try {
-      service.createNewComment(rawCommentData);
+      service.createNewComment(postId, rawCommentData);
     } catch (error) {
       console.log("Error in PostController.addComment: ", error);
     }

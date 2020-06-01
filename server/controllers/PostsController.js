@@ -10,6 +10,7 @@ export class PostsController extends BaseController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .post("", this.create)
+      .put("/post/:id/comment", this.editComments)
       .put("/:id", this.edit)
       .delete("/:id", this.delete);
   }
@@ -62,6 +63,16 @@ export class PostsController extends BaseController {
     try {
       let id = req.params.id;
       let data = await postsService.edit(id, req.body);
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async editComments(req, res, next) {
+    console.log(req);
+    try {
+      let id = req.params.id;
+      let data = await postsService.editComments(id, req.body);
       res.send(data);
     } catch (error) {
       next(error);

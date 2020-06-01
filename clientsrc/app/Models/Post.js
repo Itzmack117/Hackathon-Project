@@ -1,5 +1,4 @@
 import store from "../store.js";
-async function getUsername() {}
 export default class Post {
   constructor(data) {
     this.id = data.id;
@@ -69,9 +68,7 @@ export default class Post {
           </form>
         </div>
       <div  class="bg-light comment-card m-2 p-2 position-relative">
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comments-${
-            this.id
-          }">Comments</button>
+         ${this.commentTemplate}
       <div class="collapse position-absolute bg-light m-2 p-2 comment-card " id="comments-${
         this.id
       }"></div>
